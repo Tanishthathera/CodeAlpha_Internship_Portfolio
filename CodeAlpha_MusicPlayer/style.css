@@ -1,0 +1,180 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: white;
+}
+
+.player-container {
+    width: 350px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Search Box Styling */
+.search-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#search-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    outline: none;
+}
+
+#search-btn {
+    background: #00d2ff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #121212;
+    transition: 0.3s;
+}
+
+#search-btn:hover {
+    background: #00b8e6;
+    transform: scale(1.05);
+}
+
+/* Album Art Styling */
+.img-area {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 4px solid rgba(255, 255, 255, 0.1);
+}
+
+.img-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Rotation Animation */
+.rotate {
+    animation: spin 12s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Song Details */
+.song-details {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#track-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#track-artist {
+    font-size: 0.9rem;
+    color: #bbb;
+}
+
+/* Progress Bar */
+.progress-area {
+    margin-bottom: 20px;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    accent-color: #00d2ff;
+}
+
+.timer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+/* Controls Styling */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.play-btn {
+    width: 60px;
+    height: 60px;
+    background: white !important;
+    color: #121212 !important;
+    border-radius: 50%;
+    font-size: 1.2rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls button:hover {
+    color: #00d2ff;
+    transform: scale(1.1);
+}
+
+/* Volume Control */
+.volume-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#vol-slider {
+    width: 100px;
+    accent-color: #00d2ff;
+    cursor: pointer;
+}
+
+#vol-icon {
+    color: #00d2ff;
+    width: 20px;
+}
