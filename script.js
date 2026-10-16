@@ -123,11 +123,11 @@ const termBody = document.getElementById('terminal-body');
 
 const commands = {
     help: "Available commands: <span class='highlight-cmd'>help, skills, projects, contact, clear, theme, sudo</span>",
-    skills: "🚀 Frontend: React, JS, HTML, CSS | Backend: Node, Express, MongoDB, SQLite | Logic: Python",
+    skills: " Frontend: React, JS, HTML, CSS | Backend: Node, Express, MongoDB, SQLite | Logic: Python",
     projects: "📂 Projects: Myntra Clone, Maa Baglamukhi, MOBMAX, Weather App, Python Log Pipeline",
     contact: "📧 Email: tanishthathera@gmail.com | 📞 Phone: +91-9636870216",
     clear: "CLEAR_TERMINAL",
-    sudo: "Nice try! 😉 You already have admin privileges here."
+    sudo: "Nice try!  You already have admin privileges here."
 };
 
 // Realistic Keyboard Mechanical Click Sound Generator
@@ -609,8 +609,30 @@ document.addEventListener('click', () => {
     initAudioContext();
 }, { once: true });
 
-// --- Portal, Glitch Logo & 3D Spaceship Animation Sequence ---
+// --- Portal, Glitch Logo & 3D Spaceship Animation Sequence + Mobile Sidebar Toggle ---
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. Mobile Hamburger Menu & Right-Side Sidebar Toggle ---
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navContainer = document.querySelector('.nav-container');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    if (hamburgerBtn && navContainer) {
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            navContainer.classList.toggle('mobile-open');
+        });
+
+        // Close mobile sidebar when any navigation link is clicked
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                navContainer.classList.remove('mobile-open');
+            });
+        });
+    }
+
+    // --- 2. Tech Pods & Spaceship Animation ---
     const pods = document.querySelectorAll('.tech-pod-wrapper');
 
     // Step 1: Page Load (0s to 4s) -> Logos start with Cyber Glitch Effect
