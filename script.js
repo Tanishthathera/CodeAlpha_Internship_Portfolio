@@ -326,7 +326,7 @@ if (copyBtn) {
     });
 }
 
-// Floating Sliding Pill Indicator for Navbar
+// --- 100% Accurate Scroll Spy & Sliding Pill Engine ---
 const navContainer = document.querySelector('.nav-container');
 const slidingPill = document.querySelector('.nav-sliding-pill');
 const navItems = document.querySelectorAll('.nav-item');
@@ -341,16 +341,19 @@ function movePillTo(element) {
     slidingPill.style.opacity = '1';
 }
 
-const activeNav = document.querySelector('.nav-item.active-nav');
-if (activeNav) movePillTo(activeNav);
+// Initial Active State
+const initialActive = document.querySelector('.nav-item.active-nav') || navItems[0];
+if (initialActive) movePillTo(initialActive);
 
+// Click & Hover Handler
 navItems.forEach(item => {
-    item.addEventListener('mouseenter', () => movePillTo(item));
     item.addEventListener('click', () => {
         navItems.forEach(nav => nav.classList.remove('active-nav'));
         item.classList.add('active-nav');
         movePillTo(item);
     });
+
+    item.addEventListener('mouseenter', () => movePillTo(item));
 });
 
 if (navContainer) {
@@ -360,27 +363,44 @@ if (navContainer) {
     });
 }
 
+// Bulletproof Scroll Spy Logic
 window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('main section, footer');
-    let currentId = '';
+    const scrollPos = window.scrollY + 200; // Offset buffer for smooth triggering
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            currentId = section.getAttribute('id');
+    const sections = [
+        { id: 'home', el: document.querySelector('#home, header#home, main#home') },
+        { id: 'skills', el: document.querySelector('#skills') },
+        { id: 'projects', el: document.querySelector('#projects, #work') },
+        { id: 'terminal', el: document.querySelector('#terminal') },
+        { id: 'education', el: document.querySelector('#education') },
+        { id: 'contact', el: document.querySelector('#contact, footer') }
+    ];
+
+    let activeId = 'home';
+
+    sections.forEach(sec => {
+        if (sec.el) {
+            const top = sec.el.offsetTop;
+            const height = sec.el.offsetHeight;
+            if (scrollPos >= top && scrollPos < top + height) {
+                activeId = sec.id;
+            }
         }
     });
 
-    if (currentId) {
-        navItems.forEach(item => {
-            if (item.getAttribute('href') === `#${currentId}`) {
-                navItems.forEach(nav => nav.classList.remove('active-nav'));
-                item.classList.add('active-nav');
-                movePillTo(item);
-            }
-        });
+    // Special handling if scrolled to bottom (Contact/Footer)
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        activeId = 'contact';
     }
+
+    navItems.forEach(item => {
+        const href = item.getAttribute('href');
+        if (href === `#${activeId}` || (activeId === 'contact' && href === '#contact') || (activeId === 'projects' && href === '#projects')) {
+            navItems.forEach(nav => nav.classList.remove('active-nav'));
+            item.classList.add('active-nav');
+            movePillTo(item);
+        }
+    });
 });
 
 // --- HYPER-INTERACTIVE CONSTELLATION & RIPPLE BACKGROUND ENGINE ---
